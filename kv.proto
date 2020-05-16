@@ -1,0 +1,46 @@
+syntax = "proto3";
+
+package kv_storage;
+
+// A simple key-value storage service
+service KeyValueStore {
+    // Provides a value for each key request
+    rpc Get (stream GetRequest) returns (stream GetResponse) {}
+    rpc Delete (stream DeleteRequest) returns (DeleteResponse) {}
+    rpc Put (stream PutRequest) returns (PutResponse) {}
+}
+
+// The request message containing the key
+message GetRequest {
+    string key = 1;
+}
+
+// The response message containing the value associated with the key
+message GetResponse {
+    string value = 1;
+}
+
+// The request delete specified the key
+message DeleteRequest {
+    string key = 1;
+}
+
+// The response message containing the status of the deleting
+message DeleteResponse {
+    enum DeleteStatus {
+        Succeeded = 0;
+        NotFound = 1;
+        Locked = 2;
+    }
+    DeleteStatus status = 1;
+}
+
+// The put message containing the new key and associated with the key a value
+message PutRequest {
+    string key = 1;
+    string message = 2;
+}
+
+message PutResponse {
+    bool success = 1;
+}
