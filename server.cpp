@@ -1,13 +1,10 @@
-#include <memory>
 #include <iostream>
-#include <string>
-#include <thread>
-
-#include <grpcpp/grpcpp.h>
-#include <grpc/support/log.h>
+#include "rpc/AsyncServerImpl.h"
 
 int main()
 {
-    std::cout << "Hello, World!" << std::endl;
+    std::cout << "GRPC Initialization..." << std::endl;
+    kv_storage::AsyncServerImpl server("0.0.0.0:50051");
+    server.Run();
     return 0;
 }
