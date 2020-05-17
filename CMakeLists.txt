@@ -87,5 +87,9 @@ add_executable(KV_storage
         core/CoreService.h
         rpc/AsyncServerImpl.cpp rpc/AsyncServerImpl.h
         rpc/ServerCallBase.h
+        rpc/ServerCallGet.cpp rpc/ServerCallGet.h
+        rpc/ServerCallDelete.cpp rpc/ServerCallDelete.h
+        rpc/ServerCallPut.cpp rpc/ServerCallPut.h
         ${hw_proto_srcs}  ${hw_grpc_srcs})
+target_include_directories(KV_storage PRIVATE ${PROJECT_SOURCE_DIR})
 target_link_libraries(KV_storage ${_REFLECTION} ${_GRPC_GRPCPP} ${_PROTOBUF_LIBPROTOBUF})

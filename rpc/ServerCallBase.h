@@ -13,14 +13,15 @@ namespace kv_storage
 // all real methods implementation
 class CoreService;
 
+enum class CallStatus {
+    CREATE, PROCESS, FINISH
+};
+
 /**
  * Abstract class to describe and initialize Async Server Call
  */
 class ServerCallBase {
 public:
-    enum class CallStatus {
-        CREATE, PROCESS, FINISH
-    };
     virtual ~ServerCallBase() noexcept = default;
     virtual void Proceed(bool ok) = 0;
 

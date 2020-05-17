@@ -4,6 +4,8 @@
  */
 
 #include "AsyncServerImpl.h"
+#include "ServerCallGet.h"
+#include "ServerCallDelete.h"
 #include <grpc/support/log.h>
 
 namespace kv_storage
@@ -21,7 +23,8 @@ AsyncServerImpl::~AsyncServerImpl() noexcept
 
 void AsyncServerImpl::Run()
 {
-
+    ServerCallGet::spawn(service_, *queue_);
+    ServerCallDelete::spawn(service_, *queue_);
 }
 
 }
